@@ -43,22 +43,24 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy projects
 COPY --from=builder-frontend /app/dist/projet_web/browser/ /var/www/html
-COPY --from=builder-backend /app/build /app/backend
+#COPY --from=builder-backend /app/build /app/backend
 
 # Set working directory
 WORKDIR /app/backend
 # Install dependencies
-RUN corepack enable && pnpm install --prod --frozen-lockfile
+#RUN corepack enable && pnpm install --prod --frozen-lockfile
 
 
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 
-ENV NODE_ENV production
-ENV HOST 0.0.0.0
-ENV PORT 3333
-ENV LOG_LEVEL info
+#ENV NODE_ENV production
+#ENV HOST 0.0.0.0
+#ENV PORT 3333
+#ENV LOG_LEVEL info
 
+# Expose port
 EXPOSE 80
 
+# Start supervisor
 CMD ["/usr/bin/supervisord"]
