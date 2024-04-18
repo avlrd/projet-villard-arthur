@@ -3,11 +3,11 @@ name: Build and publish
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: avlrd/projet-villard-arthur
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-publish:
