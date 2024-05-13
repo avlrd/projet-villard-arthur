@@ -1,0 +1,16 @@
+#wrapper {
+	display: flex;
+	padding: 1rem 0;
+	margin: 0 2%; /* % here to keep the same amount on all zooms */
+
+	border-top: 1px solid #e9ecef;
+
+	color: grey;
+}
+
+#mentions {
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

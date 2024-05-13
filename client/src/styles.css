@@ -1,0 +1,27 @@
+html {
+	font-size: 1rem;
+	min-width: 320px;
+}
+
+body {
+	margin: 0;
+}
+
+app-root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+main {
+	flex: 1;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+p {
+	margin: 0;
+}

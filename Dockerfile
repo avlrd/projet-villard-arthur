@@ -1,7 +1,7 @@
 # ==============================
 #           FRONTEND
 # ==============================
-FROM node:20 as builder-frontend
+FROM node:20 as builder-client
 
 # Set working directory
 WORKDIR /app
@@ -10,7 +10,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copy project folder
-COPY frontend /app
+COPY client /app
 
 # Build Angular project
 RUN pnpm i && NODE_ENV=production pnpm run build
@@ -18,7 +18,7 @@ RUN pnpm i && NODE_ENV=production pnpm run build
 # ==============================
 #           BACKEND
 # ==============================
-FROM node:20 as builder-backend
+FROM node:20 as builder-server
 
 # Set working directory
 WORKDIR /app
@@ -27,7 +27,7 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 # Copy project folder
-COPY backend /app
+COPY server /app
 
 # Build backend project
 RUN pnpm i && NODE_ENV=production pnpm run build
@@ -42,11 +42,11 @@ RUN mkdir -p /var/log/supervisor
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy projects
-COPY --from=builder-frontend /app/dist/projet-web/browser/ /var/www/html
-COPY --from=builder-backend /app/build /app/backend
+COPY --from=builder-client /app/dist/projet-web/browser/ /var/www/html
+COPY --from=builder-server /app/build /app/server
 
 # Set working directory
-WORKDIR /app/backend
+WORKDIR /app/server
 # Install dependencies
 RUN npm ci --production
 
@@ -56,7 +56,7 @@ COPY docker/nginx.conf /etc/nginx/nginx.conf
 
 ENV NODE_ENV production
 ENV HOST 0.0.0.0
-ENV PORT 3333
+ENV PORT 3000
 ENV LOG_LEVEL info
 
 # Expose port
