@@ -1,10 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+:root {
+	--header-background-color: white;
+	
+	--main-background-color: rgb(247,247,247);
+
+	--footer-background-color: rgb(17, 17, 17);
+	--footer-text-color: rgb(230, 230, 230);
+}
+
 html {
 	font-size: 1rem;
 	min-width: 320px;
+	font-family: Lato, sans-serif;
 }
 
 body {
 	margin: 0;
+	background-color: var(--main-background-color);
 }
 
 app-root {
@@ -24,4 +37,9 @@ a {
 
 p {
 	margin: 0;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
 }
