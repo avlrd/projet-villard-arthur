@@ -1,13 +1,12 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
 	res.json({ message: 'Testing api :)' });
 });
 

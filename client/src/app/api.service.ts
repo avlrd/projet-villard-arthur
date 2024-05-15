@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
-  constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) {}
 
-  get(): Observable<any> {
-	return this.http.get('/');
-  }
+	getMessage() {
+		return this.http.get<any>('/test');
+	}
 }
