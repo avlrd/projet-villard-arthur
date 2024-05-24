@@ -13,6 +13,18 @@
 	align-items: center;
 }
 
+#header-title {
+	display: flex;
+	align-items: center;
+
+	height: 100%;
+}
+
+#header-title img {
+	height: 100%;
+	width: 100%;
+}
+
 #header-search-bar {
 	display: flex;
 	align-items: center;
