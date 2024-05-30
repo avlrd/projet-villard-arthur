@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
 	constructor(private http: HttpClient) {}
 
-	getMessage() {
-		return this.http.get<any>('/test');
+	getMessage(): Observable<any> {
+		return this.http.get<any>('/api/test');
 	}
 }

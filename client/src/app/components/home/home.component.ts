@@ -14,8 +14,13 @@ export class HomeComponent {
 	constructor(private apiService: ApiService) {}
 
 	ngOnInit() {
-		this.apiService.getMessage().subscribe((data: any) => {
-			this.message = data.message;
-		});
+		this.apiService.getMessage().subscribe(
+			response => {
+				this.message = response.message;
+			},
+			error => {
+				this.message = 'Error fetching test message: ' + error.message;
+			}
+		);
 	}
 }
