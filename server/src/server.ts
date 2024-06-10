@@ -1,16 +1,17 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 
+import EntryPoint from './routes/_entrypoint';
+
 dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
-app.get('/api/test', (request: Request, response: Response) => {
-	console.log('GET /api/test');
-	response.status(200).send('Hello World');
-});
+app.use(express.json())
+
+app.use("/api", EntryPoint);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
