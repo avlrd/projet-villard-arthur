@@ -1,0 +1,7 @@
+<form id="loginform" [formGroup]="this.loginForm" (ngSubmit)="onSubmit()">
+	<h1 id="title">{{ this.register ? 'Register' : 'Log In' }}</h1>
+	<input id="logininput" formControlName="login" type="text" placeholder="login">
+	<input id="passwordinput" formControlName="password" type="password" placeholder="password">
+	<button id="switch" (click)="switch()">{{ this.register ? 'Already have an account ? Log In' : 'Don\'t have an account ? Register' }}</button>
+	<button id="submitbutton" [disabled]="this.loginForm.invalid" type="">Submit</button>
+</form>
