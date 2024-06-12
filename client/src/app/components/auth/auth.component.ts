@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { ApiService } from '../../services/api.service';
+import { AuthService } from '../../services/auth.service';
 
 import Credentials from "../../models/credentials.model";
 
@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
 
 	register: boolean = false;
 
-	constructor(private apiService: ApiService, private formBuilder: FormBuilder) {}
+	constructor(private authService: AuthService, private formBuilder: FormBuilder) {}
 
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
@@ -36,10 +36,10 @@ export class AuthComponent implements OnInit {
 		switch(this.register)
 		{
 			case true:
-				this.apiService.register(credentials);
+				this.authService.register(credentials);
 				break;
 			case false:
-				this.apiService.login(credentials);
+				this.authService.login(credentials);
 				break;
 			default:
 				console.error("Invalid register value");
