@@ -4,6 +4,6 @@ import testController from '../controllers/test.controller';
 
 const testRouter = Router();
 
-testRouter.get('/1', testController.uno);
+testRouter.get('/', testController.uno);
 
 export default testRouter
