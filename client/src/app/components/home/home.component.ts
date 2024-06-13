@@ -1,26 +1,22 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
 import { ApiService } from "../../api.service";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: 'app-home',
 	standalone: true,
 	templateUrl: "./home.component.html",
-	styleUrl: "./home.component.css"
+	styleUrl: "./home.component.css",
+	imports: [CommonModule]
 })
-export class HomeComponent {
-	message: string = '';
+export class HomeComponent implements OnInit {
+	message: Observable<string> | undefined;
 
 	constructor(private apiService: ApiService) {}
 
 	ngOnInit() {
-		this.apiService.getMessage().subscribe(
-			response => {
-				this.message = response.message;
-			},
-			error => {
-				this.message = 'Error fetching test message: ' + error.message;
-			}
-		);
+		this.message = this.apiService.getMessage();
 	}
 }

@@ -2,8 +2,8 @@ import { Router } from 'express'
 
 import testController from '../controllers/test.controller';
 
-const testRouter = Router();
+const TestRouter = Router();
 
-testRouter.get('/1', testController.uno);
+TestRouter.get('/1', testController.uno);
 
-export default testRouter
+export default TestRouter;

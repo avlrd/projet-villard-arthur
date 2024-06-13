@@ -1,8 +1,10 @@
 import { Router } from 'express';
 import TestRouter from './test.route';
+import AuthRouter from './auth.route';
 
-const entryPointRouter: Router = Router();
+const EntryPointRouter: Router = Router();
 
-entryPointRouter.use('/test', TestRouter);
+EntryPointRouter.use('/test', TestRouter);
+EntryPointRouter.get('/auth', AuthRouter);
 
-export default entryPointRouter;
+export default EntryPointRouter;
