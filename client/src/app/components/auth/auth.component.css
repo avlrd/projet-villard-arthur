@@ -1,0 +1,54 @@
+#loginform {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	margin: auto;
+	padding: 2rem;
+
+	font-size: 2rem;
+
+	border-radius: 1rem;
+	box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+#title {
+	margin-bottom: 2rem;
+	font-size: 2rem;
+}
+
+input {
+	margin-bottom: 2rem;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: none;
+	border-radius: 0.5rem;
+}
+
+#switch {
+	margin-bottom: 2rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+#submitbutton {
+	color: white;
+	background-color: black;
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 0.5rem;
+	box-shadow:	0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+}
+
+#submitbutton:hover {
+	cursor: pointer;
+	color: black;
+	background-color: white;
+}
+
+#submitbutton:disabled {
+	cursor: not-allowed;
+	color: white;
+	background-color: grey;
+}

@@ -8,11 +8,6 @@
 	font-size: 2rem;
 }
 
-#wrapper > * {
-	height: 100%;
-	align-items: center;
-}
-
 #header-title {
 	display: flex;
 	align-items: center;
