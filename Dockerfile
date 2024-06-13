@@ -37,7 +37,7 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy projects
 COPY --from=builder-client /app/dist/projet-web/browser/ /var/www/html
-COPY --from=builder-server /app/build /app/server
+COPY --from=builder-server /app/build /app/package.json /app/package-lock.json /app/server/
 
 # Set working directory
 WORKDIR /app/server
