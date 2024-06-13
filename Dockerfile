@@ -25,6 +25,7 @@ COPY server /app
 
 # Build backend project
 RUN npm i && NODE_ENV=production npm run build
+RUN ls -la /app/build
 
 # ==============================
 #         FINAL IMAGE
