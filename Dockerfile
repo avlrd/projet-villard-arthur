@@ -10,7 +10,7 @@ WORKDIR /app
 COPY client /app
 
 # Build Angular project
-RUN npm i && NODE_ENV=production npm run build
+RUN npm ci && NODE_ENV=production npm run build
 
 # ==============================
 #           BACKEND
@@ -24,25 +24,27 @@ WORKDIR /app
 COPY server /app
 
 # Build backend project
-RUN npm i && NODE_ENV=production npm run build
+RUN npm ci && NODE_ENV=production npm run build
 
 # ==============================
 #         FINAL IMAGE
 # ==============================
-FROM node:20
+FROM node:20-slim
 
-RUN apt-get update && apt-get install -y supervisor nginx
+RUN apt-get update && apt-get install -y supervisor nginx && \ apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN mkdir -p /var/log/supervisor
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Copy projects
 COPY --from=builder-client /app/dist/projet-web/browser/ /var/www/html
-COPY --from=builder-server /app/build /app/package.json /app/package-lock.json /app/server/
+
+COPY --from=builder-server /app/build /app/server/
+COPY --from=builder-server /app/package.json /app/package-lock.json /app/server/
 
 # Set working directory
 WORKDIR /app/server
 # Install dependencies
-RUN npm ci
+RUN npm ci --only=production
 
 
 # Copy nginx configuration
