@@ -42,7 +42,7 @@ COPY --from=builder-server /app/build /app/server
 # Set working directory
 WORKDIR /app/server
 # Install dependencies
-RUN npm ci --production
+RUN npm ci
 
 
 # Copy nginx configuration
