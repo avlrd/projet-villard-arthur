@@ -6,14 +6,11 @@ FROM node:20 as builder-client
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy project folder
 COPY client /app
 
 # Build Angular project
-RUN pnpm i && NODE_ENV=production pnpm run build
+RUN npm i && NODE_ENV=production npm run build
 
 # ==============================
 #           BACKEND
@@ -23,14 +20,11 @@ FROM node:20 as builder-server
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
 # Copy project folder
 COPY server /app
 
 # Build backend project
-RUN pnpm i && NODE_ENV=production pnpm run build
+RUN npm i && NODE_ENV=production npm run build
 
 # ==============================
 #         FINAL IMAGE
