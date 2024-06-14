@@ -9,8 +9,9 @@
 	</div>
 
 	<nav id="header-menu">
-		<a routerLink="/catalog">Products</a>
-		<a routerLink="/account">Account</a>
-		<a routerLink="/cart">Cart</a>
+		<fa-icon [icon]="faBagShopping" routerLink="/catalog"></fa-icon>
+		<fa-icon [icon]="faUser" routerLink="/auth"></fa-icon>
+		<fa-icon [icon]="faCartShopping" routerLink="/cart"></fa-icon>
+		<fa-icon id="hamburger" [icon]="faBars"></fa-icon>
 	</nav>
 </div>
