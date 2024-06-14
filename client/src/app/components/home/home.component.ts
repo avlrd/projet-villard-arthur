@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Observable } from "rxjs";
 
 import { ApiService } from "../../api.service";
 
@@ -12,11 +11,9 @@ import { ApiService } from "../../api.service";
 	imports: [CommonModule]
 })
 export class HomeComponent {
-	message: Observable<string> | undefined;
-
 	constructor(private apiService: ApiService) {}
 
 	ngOnInit() {
-		this.message = this.apiService.getMessage();
+		this.apiService.getMessage().subscribe(data => console.log(data));
 	}
 }
