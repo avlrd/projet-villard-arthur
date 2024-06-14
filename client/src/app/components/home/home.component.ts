@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Observable } from "rxjs";
 
-import { ApiService } from "../../api.service";
+import { ApiService } from "../../services/api.service";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: 'app-home',
@@ -11,7 +11,7 @@ import { ApiService } from "../../api.service";
 	styleUrl: "./home.component.css",
 	imports: [CommonModule]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 	message: Observable<string> | undefined;
 
 	constructor(private apiService: ApiService) {}
