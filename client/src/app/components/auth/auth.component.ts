@@ -33,6 +33,10 @@ export class AuthComponent implements OnInit {
 			password: this.loginForm.value.password
 		};
 
+		if (this.loginForm.invalid) {
+			return;
+		}
+
 		switch(this.register)
 		{
 			case true:
@@ -51,6 +55,7 @@ export class AuthComponent implements OnInit {
 	get password() { return this.loginForm.get('password'); }
 
 	switch(): void {
+		this.loginForm.reset();
 		this.register = !this.register;
 	}
 }

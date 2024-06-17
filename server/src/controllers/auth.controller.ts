@@ -1,36 +1,27 @@
 import { Request, Response } from 'express';
-import { hashPassword, comparePasswords } from '../tools/bcrypt.tools';
 import { generateToken } from '../tools/jwt.tools';
+import { createUser, getUser } from '../database/commands/user.commands';
 import User from '../models/user.model';
 import Credentials from '../models/credentials.model';
 
-export const register = async (request: Request, response: Response) => {
-	console.log("Register request");
+export const register = async (request: Request, response: Response): Promise<any> => {
+	console.log('POST /api/auth/register');
 	const credentials: Credentials = request.body;
 
+	const user = await getUser(credentials.username);
+	if (user) return response.status(400).json({ message: 'User already exists' });
+
 	try {
-		let username = credentials.username;
-		let user = await User.findOne ({ username });
-
-		if (user) return response.status(400).json({ message: 'User already exists' });
-
-		const hashedPassword = await hashPassword(credentials.password);
-
-		user = new User({
-			username,
-			password: hashedPassword
-		});
-
-		await user.save();
-
-		const token = generateToken(user);
-		response.json({ token });
+		const newUser = await createUser(credentials.username, credentials.password);
+		console.log(`User created: ${newUser}`);
+		response.status(200).send('User created successfully');
 	}
 	catch (error: Error | any) {
 		console.error(error);
-		response.status(500).json({ message: 'Server error' }); //TODO: handle errors
+		response.status(500).json({ message: 'Server error at registration controller' });
 	}
-};
+}
+	
 
 export const login = async (request: Request, response: Response) => {
 	const credentials: Credentials = request.body;
@@ -41,7 +32,7 @@ export const login = async (request: Request, response: Response) => {
 
 		if (!user) return response.status(400).json({ message: 'User not found' });
 
-		const passwordMatch = await comparePasswords(credentials.password, user.password);
+		const passwordMatch = credentials.password === user.password;
 
 		if (!passwordMatch) return response.status(400).json({ message: 'Invalid credentials' });
 
@@ -50,6 +41,6 @@ export const login = async (request: Request, response: Response) => {
 	}
 	catch (error: Error | any) {
 		console.error(error);
-		response.status(500).json({ message: 'Server error' }); //TODO: handle errors
+		response.status(500).json({ message: 'Server error' });
 	}
 }
