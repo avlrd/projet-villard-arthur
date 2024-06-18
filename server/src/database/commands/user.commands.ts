@@ -1,4 +1,4 @@
-import User from '../models/user.model';
+import User from '../datamodels/user.model';
 
 export const createUser = async (login: string, password: string): Promise<User> => {
 	const user = await User.create({ login: login, password: password });

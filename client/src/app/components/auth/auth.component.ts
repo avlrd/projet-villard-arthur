@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
 
 import Credentials from "../../models/credentials.model";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
 	selector: 'app-auth',
@@ -22,7 +23,7 @@ export class AuthComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
-			login: ['', Validators.required],
+			login: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9-_]{4,16}$/)]],
 			password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/)]]
 		});
 	}
@@ -37,13 +38,17 @@ export class AuthComponent implements OnInit {
 			return;
 		}
 
+		var message;
+
 		switch(this.register)
 		{
 			case true:
-				this.authService.register(credentials);
+				message = this.authService.register(credentials).subscribe();
+				console.log(message);
 				break;
 			case false:
-				this.authService.login(credentials);
+				message = this.authService.login(credentials).subscribe();
+				console.log(message);
 				break;
 			default:
 				console.error("Invalid register value");

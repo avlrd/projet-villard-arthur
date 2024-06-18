@@ -1,5 +1,5 @@
 type Credentials = {
-	username: string;
+	login: string;
 	password: string;
 };
 
