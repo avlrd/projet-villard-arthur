@@ -1,0 +1,16 @@
+@for (item of this.products | async; track $index) {
+	<div class="cart-item">
+		<p class="cart-item-name">{{ item.product.name }}</p>
+		<p class="cart-item-type">{{ item.product.type }}</p>
+		<p class="cart-item-price">{{ item.product.price }}</p>
+		<p class="cart-item-quantity">Quantity: {{ item.quantity }}</p>
+		<button class="remove-from-cart-button" (click)="removeFromCart(item)">Remove from cart</button>
+	</div>
+}
+
+<button id="clear-cart-button" (click)="clearCart()">Clear cart</button>
+
+<p>Total :</p>
+<p>{{ total | async }}</p>
+
+<button id="checkout-button" (click)="clearCart()">Checkout</button>

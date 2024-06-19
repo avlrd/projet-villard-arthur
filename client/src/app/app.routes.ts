@@ -7,11 +7,13 @@ import { AccountComponent } from './components/account/account.component';
 import { NotFoundComponent } from './components/notfound/notfound.component';
 import { authGuard } from './services/auth.guard';
 import { loginRedirectGuard } from './services/loginredirect.guard';
+import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
 	{ path: '', component: HomeComponent },
 	{ path: 'catalog', component: CatalogComponent },
 	{ path: 'auth', component: AuthComponent, canActivate: [loginRedirectGuard]},
 	{ path: 'account', component: AccountComponent, canActivate: [authGuard]},
+	{ path: 'cart', component: CartComponent },
 	{ path: '**', component: NotFoundComponent}
 ];

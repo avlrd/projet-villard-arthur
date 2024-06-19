@@ -2,9 +2,11 @@ import { Component } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { BehaviorSubject, Observable, catchError, of, switchMap } from "rxjs";
+import { Store } from "@ngxs/store";
+
 import { ApiService } from "../../services/api.service";
 import Product from "../../models/product.model";
-import { Store } from "@ngxs/store";
+import { AddToCart } from "../../store/cart.action";
 
 @Component({
 	selector: 'app-catalog',
@@ -27,6 +29,7 @@ export class CatalogComponent {
 	}
 
 	addToCart(product: Product) {
-		this.store.dispatch({ type: "ADD_TO_CART", payload: product });
+		console.log("Adding product to cart: ", product);
+		this.store.dispatch(new AddToCart(product));
 	}
 }

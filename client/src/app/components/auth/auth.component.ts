@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 
 import Credentials from "../../models/credentials.model";
 import { Observable, Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: 'app-auth',
@@ -19,7 +20,7 @@ export class AuthComponent implements OnInit {
 
 	register: boolean = false;
 
-	constructor(private authService: AuthService, private formBuilder: FormBuilder) {}
+	constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {}
 
 	ngOnInit(): void {
 		this.loginForm = this.formBuilder.group({
@@ -43,11 +44,19 @@ export class AuthComponent implements OnInit {
 		switch(this.register)
 		{
 			case true:
-				message = this.authService.register(credentials).subscribe();
+				message = this.authService.register(credentials).subscribe(
+					() => {
+						this.router.navigate(['/auth']);
+					}
+				);
 				console.log(message);
 				break;
 			case false:
-				message = this.authService.login(credentials).subscribe();
+				message = this.authService.login(credentials).subscribe(
+					() => {
+						this.router.navigate(['/account']);
+					}
+				);
 				console.log(message);
 				break;
 			default:
