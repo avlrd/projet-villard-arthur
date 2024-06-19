@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { BehaviorSubject, Observable, catchError, of, switchMap } from "rxjs";
 import { ApiService } from "../../services/api.service";
 import Product from "../../models/product.model";
+import { Store } from "@ngxs/store";
 
 @Component({
 	selector: 'app-catalog',
@@ -20,12 +21,12 @@ export class CatalogComponent {
 		catchError(() => of([]))
 	);
 
-	constructor(private apiService: ApiService) {}
+	constructor(private apiService: ApiService, private store: Store) {}
 
 	search() {
 	}
 
 	addToCart(product: Product) {
-
+		this.store.dispatch({ type: "ADD_TO_CART", payload: product });
 	}
 }

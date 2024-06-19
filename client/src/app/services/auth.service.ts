@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { tap } from "rxjs/operators";
 import { Observable } from "rxjs";
 
 import Credentials from '../models/credentials.model';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+	jwtToken: string = "";
+
 	constructor(private http: HttpClient) {}
 
 	register(credentials: Credentials): Observable<string> {
@@ -20,6 +21,11 @@ export class AuthService {
 	}
 
 	logout(): void {
-		localStorage.removeItem('access_token');
+		console.log("Logout request");
+		this.jwtToken = "";
+	}
+
+	isLoggedIn(): boolean {
+		return this.jwtToken !== "";
 	}
 }
