@@ -6,6 +6,6 @@ export const getProducts = async (filter: string): Promise<Array<Product>> => {
 		return await Product.findAll();
 	}
 	else {
-		return await Product.findAll({ where: { name: { [Op.iLike]: `%${filter}`} } });
+		return await Product.findAll({ where: { name: { [Op.iLike]: `%${filter}%`} } });
 	}
 }
