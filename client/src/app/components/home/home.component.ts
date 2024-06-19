@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ApiService } from "../../services/api.service";
-import { Observable } from "rxjs";
 
 @Component({
 	selector: 'app-home',
@@ -11,12 +10,10 @@ import { Observable } from "rxjs";
 	styleUrl: "./home.component.css",
 	imports: [CommonModule]
 })
-export class HomeComponent implements OnInit {
-	message: Observable<string> | undefined;
-
+export class HomeComponent {
 	constructor(private apiService: ApiService) {}
 
 	ngOnInit() {
-		this.message = this.apiService.getMessage();
+		this.apiService.getMessage().subscribe(data => console.log(data));
 	}
 }

@@ -1,0 +1,55 @@
+#catchphrase {
+	font-size: 8vw;
+	text-shadow: 2px 2px 4px #000000;
+	font-style: oblique;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 15vh;
+}
+
+#desc {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 15vh;
+
+	font-size: 2vw;
+}
+
+#desctext {
+	width: 30%;
+}
+
+@media screen and (max-width: 768px) {
+	#catchphrase {
+		font-size: 12vw;
+	}
+
+	#desc {
+		font-size: 4vw;
+	}
+
+	#desctext {
+		width: 50%;
+	}
+	
+}
+
+@media screen and (max-width: 480px) {
+	#catchphrase {
+		font-size: 16vw;
+	}
+
+	#desc {
+		font-size: 6vw;
+		flex-direction: column;
+	}
+
+	#desctext {
+		width: 75%;
+		text-align: justify;
+	}
+	
+}
