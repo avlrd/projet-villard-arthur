@@ -1,1 +1,11 @@
-<p>Catalog :D</p>
+<form id="search-bar">
+	<input
+	id="search-bar-field"
+	type="text"
+	name="search"
+	placeholder="Search..."
+	[ngModel]="searchInput | async"
+	(ngModelChange)="searchInput.next($event)"
+	required>
+	<button id="search-bar-button" (click)="search()">Search</button>
+</form>
