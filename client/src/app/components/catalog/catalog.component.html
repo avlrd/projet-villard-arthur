@@ -13,9 +13,9 @@
 <div id="products-grid">
 	@for (product of this.products | async; track $index) {
 		<div class="product-card">
-			<img src="{{ product.image }}" alt="{{ product.name }}">
+			<img class="product-image" src="{{ product.image }}" alt="{{ product.name }}">
 			<p class="product-name">{{ product.name }}</p>
-			<p class="product-brand">{{ product.brand }}</p>
+			<p class="product-type">{{ product.type }}</p>
 			<p class="product-price">{{ product.price }}</p>
 			<button class="add-to-cart-button" (click)="addToCart(product)">Add to cart</button>
 		</div>

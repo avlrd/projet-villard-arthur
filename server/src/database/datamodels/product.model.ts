@@ -4,7 +4,7 @@ import sequelize from "../database";
 class Product extends Model {
 	public id!: number;
 	public name!: string;
-	public brand!: string;
+	public type!: string;
 	public price!: number;
 	public image!: string;
 };
@@ -20,7 +20,7 @@ Product.init({
 		type: DataTypes.STRING,
 		allowNull: false
 	},
-	brand: {
+	type: {
 		type: DataTypes.STRING,
 		allowNull: false
 	},

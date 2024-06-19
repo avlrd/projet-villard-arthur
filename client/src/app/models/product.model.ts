@@ -1,6 +1,6 @@
 type Product = {
 	name: string;
-	brand: string;
+	type: string;
 	price: number;
 	image: string;
 }
