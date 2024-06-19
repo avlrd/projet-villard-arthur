@@ -12,6 +12,6 @@ export class ApiService {
 	}
 
 	getProducts(filter: string): Observable<Array<Product>> {
-		return this.http.get<Array<Product>>('/api/products', filter);
+		return this.http.get<Array<Product>>('/api/products', {params: {filter: filter}});
 	}
 }

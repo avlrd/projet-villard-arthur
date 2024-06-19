@@ -24,4 +24,8 @@ export class CatalogComponent {
 
 	search() {
 	}
+
+	addToCart(product: Product) {
+
+	}
 }

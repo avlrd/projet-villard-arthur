@@ -2,7 +2,7 @@ type Product = {
 	name: string;
 	brand: string;
 	price: number;
-	stock: Array<ProductStock>;
+	image: string;
 }
 
 export default Product;
